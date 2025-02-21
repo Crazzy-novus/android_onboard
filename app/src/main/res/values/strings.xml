@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">localizeMe</string>
+    <string name="greeting_button">"Click to See Magic"</string>
+    <string name="tittle">The Great Girigalan Magic Show</string>
+    <string name="click_to_tamil">Tamil </string>
+    <string name="click_to_english">English</string>
+    <string name="magic_text">Abraka Dabura</string>
+</resources>

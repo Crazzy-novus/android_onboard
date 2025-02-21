@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#A67C52</color> <!-- Warm Earthy Brown -->
+    <color name="colorPrimaryVariant">#8B5E3B</color> <!-- Deeper Woody Brown -->
+    <color name="colorSecondary">#6C9F76</color> <!-- Muted Leaf Green -->
+    <color name="colorSecondaryVariant">#4E7D5A</color> <!-- Darker Forest Green -->
+
+    <color name="background">#D8C3A5</color> <!-- Soft Beige-Brown (No White) -->
+    <color name="surface">#C3A995</color> <!-- Muted Sandy Brown -->
+    <color name="textPrimary">#3E3D3A</color> <!-- Dark Taupe for Readability -->
+    <color name="textSecondary">#6E6658</color> <!-- Muted Brown-Grey for Subtext -->
+
+    <color name="error">#C96D5A</color> <!-- Warm Brick Red for Errors -->
+    <color name="success">#7EA66C</color> <!-- Earthy Green for Success Messages -->
+</resources>
+
