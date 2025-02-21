@@ -53,6 +53,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
@@ -67,7 +68,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             var darkTheme by remember { mutableStateOf(false) }
-            val lightThemeIconId = if (darkTheme) R.drawable.dark_theme_3_24 else R.drawable.light_theme_7_24
+            val lightThemeIconId = if (darkTheme) R.drawable.dark_theme_icon_50 else R.drawable.light_theme_icon_50
             val rotationAngle by animateFloatAsState(targetValue = if (darkTheme) 180f else 0f)
             LocalizeMeTheme(darkTheme = darkTheme) {
                 Scaffold(
@@ -80,7 +81,7 @@ class MainActivity : ComponentActivity() {
                             title = {
                                 Text(
                                     text = stringResource(R.string.tittle),
-                                    color = MaterialTheme.colorScheme.secondary,
+                                    color = MaterialTheme.colorScheme.secondary
                                 )
                             },
                             actions = {
