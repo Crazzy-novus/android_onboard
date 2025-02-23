@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">localizeMe</string>
+
+    <string name="tittle">மகா கிரிகலன் மாயாஜாலக் காட்சி</string>
+    <!--   Text View Strings-->
+    <string name="magic_text">அப்ரகா டப்ரா</string>
+    <string name="answer_text">பதில்: </string>
+
+    <!--    Button Texts Strings-->
+    <string name="click_to_tamil">தமிழ்</string>
+    <string name="click_to_english">ஆங்கிலம்</string>
+    <string name="greeting_button">"மாயையை காண கிளிக் செய்யவும்"</string>
+    <string name="click_to_activate_flavor">புதிய மாயையை கிளிக் செய்யவும்</string>
+    <string name="title_activity_flavour_demo">ஸ்வாதி டெமோ</string>
+    <string name="back_button">முந்தைய திரை</string>
+    <string name="add_button">கூட்டல்</string>
+    <string name="subtract_button">கழித்தல்</string>
+<!--    Text Field -->
+    <string name="enter_the_number">எண்ணை உள்ளிடவும்</string>
+</resources>

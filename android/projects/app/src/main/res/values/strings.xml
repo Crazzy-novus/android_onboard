@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">localizeMe</string>
+
+    <string name="tittle">The Great Girigalan Magic Show</string>
+    <!--   Text View Strings-->
+    <string name="magic_text">Abraka Dabura</string>
+    <string name="answer_text">Answer is: </string>
+
+    <!--    Button Texts Strings-->
+    <string name="click_to_tamil">Tamil </string>
+    <string name="click_to_english">English</string>
+    <string name="greeting_button">"Click to See Magic"</string>
+    <string name="click_to_activate_flavor">Click to new Magic</string>
+    <string name="title_activity_flavour_demo">FlavourDemo</string>
+    <string name="back_button">Previous Screen</string>
+    <string name="add_button">Addition</string>
+    <string name="subtract_button">Subtract</string>
+<!--    Text Field -->
+    <string name="enter_the_number">Enter the Number</string>
+</resources>
