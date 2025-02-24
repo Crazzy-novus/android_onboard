@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -31,8 +30,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -59,10 +56,10 @@ class FlavourDemo : ComponentActivity() {
 fun FlavourDemoScreen ()
 {
     val context = LocalContext.current // need to Verify
-    var number1 by remember { mutableStateOf("") }
-    var number2 by remember { mutableStateOf("") }
-    var result by remember { mutableDoubleStateOf(0.0) }
-    var isExpanded by remember { mutableStateOf(false) }
+    var number1 by remember { mutableStateOf("") } // Variable to store value from text Field !
+    var number2 by remember { mutableStateOf("") } // Variable to store value form text Field 2
+    var result by remember { mutableDoubleStateOf(0.0) } // Variable to store result value
+    var isExpanded by remember { mutableStateOf(false) } // Boolean toggle to expand Icon true - expanded/false - normal size
     val iconSize by animateDpAsState(if (isExpanded) 500.dp else 100.dp, label = "iconSize")
     val scale by animateFloatAsState(targetValue = if (isExpanded) 1.7f else 1.0f, label = "iconScale")
     Column(
@@ -72,12 +69,11 @@ fun FlavourDemoScreen ()
         verticalArrangement = Arrangement.Center
     )
     {
-
-
         IconButton(
             onClick = { isExpanded = !isExpanded },
             modifier = Modifier.size(200.dp)
-        ) {
+        )
+        {
             Icon(
                 painter = painterResource(
                     R.drawable.alarm
@@ -118,7 +114,8 @@ fun FlavourDemoScreen ()
             )
         )
         Spacer(modifier = Modifier.size(20.dp))
-        CustomButton(stringResource(R.string.add_button),
+        CustomButton(
+            stringResource(R.string.add_button),
             onClick = {
                 result = number2.toDoubleOrNull()?.let { number1.toDoubleOrNull()?.plus(it) } ?: 0.0
             })
@@ -132,9 +129,12 @@ fun FlavourDemoScreen ()
         }
         Spacer(modifier = Modifier.size(20.dp))
 
-        Text(text = stringResource(R.string.answer_text) + result.toString())
+        Text(text = stringResource(
+            R.string.answer_text) + result.toString()
+        )
         Spacer(modifier = Modifier.size(20.dp))
-        CustomButton(stringResource(R.string.back_button),
+        CustomButton(
+            stringResource(R.string.back_button),
             onClick = {
                 val intent = Intent(context, MainActivity::class.java)
                 context.startActivity(intent)

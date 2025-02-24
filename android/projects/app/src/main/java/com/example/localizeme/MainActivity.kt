@@ -66,11 +66,13 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3AdaptiveApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val languageCode = getSavedLanguage(this)?: "en"
+        //val languageCode = getSavedLanguage(this)?: "en"
         enableEdgeToEdge()
         setContent {
-            var darkTheme by remember { mutableStateOf(false) }
+            var darkTheme by remember { mutableStateOf(false) } // To store system Theme false - light/ true - dark
+            // To Icon Corresponding to Theme
             val lightThemeIconId = if (darkTheme) R.drawable.dark_theme_icon_50 else R.drawable.light_theme_icon_50
+            // To store the transition value of icon while click the icon
             val rotationAngle by animateFloatAsState(targetValue = if (darkTheme) 180f else 0f)
             val context = LocalContext.current // need to verify it is correct
             LocalizeMeTheme(darkTheme = darkTheme) {
@@ -104,63 +106,68 @@ class MainActivity : ComponentActivity() {
                     },
                 )
                 { innerPadding ->
-                    Box( modifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding),
-                        contentAlignment = Alignment.Center,
+                    Column(
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding),
                     )
                     {
-                        Column(
-                            verticalArrangement = Arrangement.SpaceEvenly,
-                        ){
-                            var visibility by remember { mutableStateOf(false) }
-                            val windowSize = with(LocalDensity.current) { currentWindowSize().toSize().toDpSize() }
-                            visibility = windowSize.width.value.dp >= 840.dp || visibility // Set visibility to true if width is greater than medium Size
-                            AnimatedVisibility(
-                                visible = visibility,
-                                enter = fadeIn() + expandVertically(),
-                                exit = slideOutVertically() + shrinkVertically() + fadeOut()
-                            ) {
-                                Box(
-                                    modifier = Modifier
-                                        .padding(innerPadding),
-                                    contentAlignment = Alignment.Center
-                                )
-                                {
-                                    Text(
-                                        stringResource(R.string.magic_text),
-                                        fontSize = 30.sp,
-                                        modifier = Modifier.background(
-                                            color = MaterialTheme.colorScheme.tertiary,
-                                            shape = RectangleShape
-                                            )
-                                            .padding(10.dp)
-                                        )
-                                }
-                            }
-                            CustomButton(stringResource(R.string.greeting_button),
-                                onClick = { visibility = !visibility }
+                        var visibility by remember { mutableStateOf(false) }
+                        val windowSize = with(LocalDensity.current) { currentWindowSize().toSize().toDpSize() }
+                        visibility = windowSize.width.value.dp >= 840.dp || visibility // Set visibility to true if width is greater than medium Size
+                        AnimatedVisibility(
+                            visible = visibility,
+                            enter = fadeIn() + expandVertically(),
+                            exit = slideOutVertically() + shrinkVertically() + fadeOut()
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .padding(innerPadding),
+                                contentAlignment = Alignment.Center
                             )
-                            Spacer(Modifier.size(20.dp))
-                            CustomButton(stringResource(R.string.click_to_tamil) ,
-                                onClick =  {
-                                    setLanguage(context = context, "ta")
-                                    (context as? Activity)?.recreate()
-
-                                })
-                            Spacer(Modifier.size(20.dp))
-                            CustomButton(stringResource(R.string.click_to_english),
-                                onClick = {
-                                    setLanguage(context = context, "en")
-                                    (context as? Activity)?.recreate()
-                                })
-                            Spacer(Modifier.size(20.dp))
-                            CustomButton(stringResource(R.string.click_to_activate_flavor),
-                                onClick = {
-                                    val intent = Intent(context, FlavourDemo::class.java)
-                                    context.startActivity(intent)
-                                })
+                            {
+                                Text(
+                                    stringResource(R.string.magic_text),
+                                    fontSize = 30.sp,
+                                    modifier = Modifier.background(
+                                        color = MaterialTheme.colorScheme.tertiary,
+                                        shape = RectangleShape
+                                        )
+                                        .padding(10.dp)
+                                    )
+                            }
                         }
+                        CustomButton(
+                            stringResource(R.string.greeting_button),
+                            onClick = { visibility = !visibility }
+                        )
+                        Spacer(Modifier.size(20.dp))
+                        CustomButton(
+                            stringResource(R.string.click_to_tamil) ,
+                            onClick =  {
+                                setLanguage(context = context, "ta")
+                                (context as? Activity)?.recreate()
+
+                            }
+                        )
+                        Spacer(Modifier.size(20.dp))
+                        CustomButton(
+                            stringResource(R.string.click_to_english),
+                            onClick = {
+                                setLanguage(context = context, "en")
+                                (context as? Activity)?.recreate()
+                            }
+                        )
+                        Spacer(Modifier.size(20.dp))
+                        CustomButton(
+                            stringResource(R.string.click_to_activate_flavor),
+                            onClick = {
+                                val intent = Intent(context, FlavourDemo::class.java)
+                                context.startActivity(intent)
+                            }
+                        )
                     }
                 }
             }
@@ -186,11 +193,11 @@ private fun saveLanguage(context: Context, languageCode: String)
     sharedPreferences.edit().putString("language", languageCode).apply()
 }
 
-private fun getSavedLanguage(context: Context) : String?
-{
-    val sharedPreferences = context.getSharedPreferences("language_prefs", Context.MODE_PRIVATE)
-    return sharedPreferences.getString("language", null)
-}
+//private fun getSavedLanguage(context: Context) : String?
+//{
+//    val sharedPreferences = context.getSharedPreferences("language_prefs", Context.MODE_PRIVATE)
+//    return sharedPreferences.getString("language", null)
+//}
 
 @Composable
 fun CustomButton(buttonText : String, onClick:() -> Unit)
@@ -201,8 +208,8 @@ fun CustomButton(buttonText : String, onClick:() -> Unit)
         modifier = Modifier
             .height(80.dp)
             .width(180.dp),
-
-        ) {
+    )
+    {
         Text(
             text = buttonText,
             fontFamily = fontFamily,
